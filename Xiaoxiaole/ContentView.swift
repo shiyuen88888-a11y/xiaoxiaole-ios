@@ -426,7 +426,10 @@ struct ContentView: View {
     private func checkForUpdate() {
         let currentCode = Int(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0") ?? 0
         Task {
-            let info = await fetchVersionJSON(rawUpdateURL) ?? await fetchVersionJSON(cdnUpdateURL)
+            var info = await fetchVersionJSON(rawUpdateURL)
+            if info == nil {
+                info = await fetchVersionJSON(cdnUpdateURL)
+            }
             guard let info else { return }
             let latestCode = info["versionCode"] as? Int ?? 0
             let latestName = info["versionName"] as? String ?? ""
