@@ -19,7 +19,7 @@ jobs:
         run: |
           xcodebuild \
             -project Xiaoxiaole.xcodeproj \
-            -target Xiaoxiaole \
+            -scheme Xiaoxiaole \
             -configuration Release \
             -sdk iphoneos \
             -derivedDataPath build \
